@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to SAM (Python/debugpy)",
+      "type": "python",
+      "request": "attach",
+      "connect": { "host": "localhost", "port": 5858 },
+      "preLaunchTask": "Start SAM Local API",
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/.aws-sam/build/MyPythonLambdaBD2BE2C6",
+          "remoteRoot": "/var/task"
+        }
+      ],
+      "justMyCode": false,
+      "redirectOutput": true
+    }
+  ]
+}

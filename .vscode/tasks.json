@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SAM Build",
+      "type": "shell",
+      "command": "sam",
+      "args": [
+        "build",
+        "-t",
+        "backend/cdk.out/BackendStack.template.json"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Start SAM Local API",
+      "type": "shell",
+      "dependsOn": "SAM Build",
+      "command": "sam",
+      "args": [
+        "local",
+        "start-api",
+        "-t",
+        ".aws-sam/build/template.yaml",
+        "-d",
+        "5858"
+      ],
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [{ "regexp": ".*", "file": 1, "location": 2, "message": 3 }],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*Mounting .* at http://.*",
+            "endsPattern": ".*You can now browse to the above URL to invoke your functions.*"
+          }
+        }
+      ],
+      "presentation": { "reveal": "always", "panel": "new" }
+    }
+  ]
+}
